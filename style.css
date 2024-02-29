@@ -1,0 +1,66 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.header {
+  left: 0;
+  right: 0;
+  height: 100px;
+  background-color: #1d0200;
+}
+
+p {
+  font-family: ;
+  color: white;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.notes {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 350px;
+  height: 100vh;
+  background-color: #9f8170;
+}
+
+button {
+  width: 330px;
+  height: 40px;
+  margin: 10px;
+}
+
+.note {
+  background: beige;
+  width: 330px;
+  height: 150px;
+  margin: 5px;
+}
+
+.note-panel {
+  /* flex-grow: 1;
+  flex-shrink:0; */
+  display: flex;
+  flex-direction: column;
+  flex: 1 0 auto;
+  height: 100vh;
+  background-color: bisque;
+}
+
+.note-title {
+  font-size: 3em;
+  font-weight: bold;
+}
+
+.note-body {
+  flex-grow: 1;
+  font-size: 1.2em;
+  line-height: 1.5;
+  margin: 5px;
+}
