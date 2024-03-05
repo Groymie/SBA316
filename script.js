@@ -1,5 +1,6 @@
 const createNoteBtn = document.querySelector("div>button");
 const saveNoteBtn = document.getElementById("saveNoteBtn");
+const noteContainer = document.querySelector(".notes");
 
 createNoteBtn.addEventListener("click", (event) => {
   console.log("hahaha");
@@ -49,4 +50,29 @@ saveNoteBtn.addEventListener("click", () => {
   notesArray.push(note);
   console.log(note);
   sessionStorage.setItem("notesArray", JSON.stringify(notesArray));
+});
+
+noteContainer.addEventListener("click", (event) => {
+  const clickedElement = event.target;
+  const allNodes = noteContainer.children;
+
+  if (
+    clickedElement.className == "note" ||
+    clickedElement.className == "notes-title" ||
+    clickedElement.className == "notes-body" ||
+    clickedElement.className == "identifier"
+  ) {
+    for (i = 2; i < allNodes.length; i++) {
+      allNodes[i].style.background = "beige";
+    }
+
+    noteContainer.style.background = "green";
+    noteData = JSON.parse(sessionStorage.getItem("notesArray"));
+    noteTitle = noteData.title;
+    noteBody = noteData.body;
+    document.querySelector(".note-title").innerText = noteTitle;
+    document.querySelector(".note-body").innerText = noteBody;
+  } else {
+    return;
+  }
 });
