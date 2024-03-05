@@ -28,4 +28,25 @@ saveNoteBtn.addEventListener("click", () => {
   const noteBody = document.querySelector(".note-body").value;
   //   console.log("here is the title: " + noteTitle);
   //   console.log("here is the body: " + noteBody);
+
+  const noteTitlePlace = document.querySelector(".notes-title");
+  noteTitlePlace.innerText = noteTitle;
+  const noteBodyPlace = document.querySelector(".notes-body");
+  noteBodyPlace.innerText = noteBody;
+
+  const noteID = Math.floor(Math.random() * 1000000);
+  const noteStickyID = document.createElement("div");
+  noteStickyID.classList.add("identifier");
+  noteStickyID.innerText = `id: ${noteID}`;
+  noteTitlePlace.insertAdjacentElement("beforebegin", noteStickyID);
+
+  const notesArray = JSON.parse(sessionStorage.getItem("notesArray") || "[]");
+  const note = {
+    id: noteID,
+    title: noteTitle,
+    body: noteBody,
+  };
+  notesArray.push(note);
+  console.log(note);
+  sessionStorage.setItem("notesArray", JSON.stringify(notesArray));
 });
