@@ -65,13 +65,34 @@ noteContainer.addEventListener("click", (event) => {
     for (i = 2; i < allNodes.length; i++) {
       allNodes[i].style.background = "beige";
     }
-
-    noteContainer.style.background = "green";
+    if (clickedElement.className != "note") {
+      clickedElement.parentNode.style.background = "green";
+    } else {
+      clickedElement.style.background = "green";
+    }
+    // document.querySelector.style.background = "green";
     noteData = JSON.parse(sessionStorage.getItem("notesArray"));
-    noteTitle = noteData.title;
+    console.log("note data's content: " + noteData);
+    for (const note of noteData) {
+      if (clickedElement.className == "identifier") {
+        const regexp = /\d+/;
+        const clickedID = parseInt(clickedElement.innerText.match(regexp));
+        // console.log("here is note id: " + note["id"]);
+        // console.log("here is clickedID: " + typeof clickedID);
+        // console.log("here is note title: " + note["title"]);
+        if (note["id"] == clickedID) {
+          document.querySelector(".note-title").value = note["title"];
+          document.querySelector(".note-body").value = note["body"];
+        } else {
+          continue;
+        }
+      }
+    }
+    noteTitle = noteData["title"];
+    console.log("note data's title type: " + typeof noteTitle);
     noteBody = noteData.body;
-    document.querySelector(".note-title").innerText = noteTitle;
-    document.querySelector(".note-body").innerText = noteBody;
+    document.querySelector(".note-title").value = noteTitle;
+    document.querySelector(".note-body").value = noteBody;
   } else {
     return;
   }
