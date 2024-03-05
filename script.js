@@ -75,29 +75,32 @@ noteContainer.addEventListener("click", (event) => {
     console.log("note data's content: " + noteData);
     for (const note of noteData) {
       const regexp = /\d+/;
-      if (clickedElement.className == "identifier") {
-        const clickedID = parseInt(clickedElement.innerText.match(regexp));
+      if (clickedElement.className != "note") {
+        const clickedID = parseInt(
+          clickedElement.parentNode.firstElementChild.innerText.match(regexp)
+        );
         if (note["id"] == clickedID) {
-          console.log("the if logic is being invoked!");
-          console.log("here is note id: " + typeof note["id"]);
-          console.log("here is clickedID: " + typeof clickedID);
-          console.log("here is note title: " + typeof note["title"]);
           const titleBox = document.querySelector(".note-title");
           const bodyBox = document.querySelector(".note-body");
           titleBox.value = note["title"];
           bodyBox.value = note["body"];
-          console.log(`this is the titleBox ${titleBox}`);
-          console.log(`this is the bodyBox ${bodyBox}`);
+        } else {
+          continue;
+        }
+      } else if (clickedElement.className == "note") {
+        const clickedID = parseInt(
+          clickedElement.firstElementChild.innerText.match(regexp)
+        );
+        if (note["id"] == clickedID) {
+          const titleBox = document.querySelector(".note-title");
+          const bodyBox = document.querySelector(".note-body");
+          titleBox.value = note["title"];
+          bodyBox.value = note["body"];
         } else {
           continue;
         }
       }
     }
-    // noteTitle = noteData["title"];
-    // console.log("note data's title type: " + typeof noteTitle);
-    // noteBody = noteData.body;
-    // document.querySelector(".note-title").value = noteTitle;
-    // document.querySelector(".note-body").value = noteBody;
   } else {
     return;
   }
